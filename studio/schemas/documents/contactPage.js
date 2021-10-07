@@ -1,19 +1,25 @@
 const contactPage = {
-    type: 'object',
-    title: 'Über Uns Seite',
-    name: 'aboutPage',
-    fields: [
-        {
-            name: 'aboutImage',
-            title: 'Bild',
-            type: 'image'
-        },
-        {
-            name: 'content',
-            title: 'Inhalt',
-            type: 'richText',
-        }
-    ]
-}
+  type: "document",
+  title: "Kontakt",
+  name: "contactPage",
+  fields: [
+    {
+      name: "mapCode",
+      title: "Google Maps Embed URL",
+      type: "url",
+    },
+    {
+      name: "content",
+      title: "Inhalt",
+      type: "richText",
+    },
+    {
+      name: "contactOptions",
+      title: "Kontakt Optionen",
+      type: "array",
+      of: [{ type: "contactLink" }],
+    },
+  ],
+};
 
 export default contactPage;
