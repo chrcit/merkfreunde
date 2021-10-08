@@ -1,17 +1,15 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
-  mode: 'jit',
+  mode: "jit",
   theme: {
     extend: {
       colors: {
-        heroBlue: "#d0e5f7"
-      }
+        heroBlue: "#d0e5f7",
+        link: "#981923",
+      },
     },
   },
-  variants: {
-  },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
-}
+  variants: {},
+  plugins: [require("@tailwindcss/typography")],
+};

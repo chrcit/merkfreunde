@@ -31,7 +31,7 @@ const Angebot: NextPage = ({ currentService, services, preview }: any) => {
         description={currentService.description}
       ></NextSeo>
       <Layout>
-        <section className="max-w-5xl mx-auto py-10">
+        <section className="max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row md:space-x-5 lg:space-x-8 mx-auto">
             <div className="mb-8 md:mb-0">
               <AccordionSidebar

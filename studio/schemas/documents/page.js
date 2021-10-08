@@ -12,11 +12,6 @@ const page = {
       },
     },
     {
-      name: "image",
-      title: "Bild",
-      type: "image",
-    },
-    {
       name: "title",
       title: "Titel",
       type: "string",

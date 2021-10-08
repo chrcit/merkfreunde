@@ -25,6 +25,16 @@ const contactLink = {
       },
     },
     {
+      title: "Icon",
+      name: "icon",
+      type: "iconPicker",
+      options: {
+        providers: ["fa"],
+        outputFormat: "react",
+        filter: ["FaPhoneAlt", "FaEnvelope", "FaWhatsapp", "FaMapPin"],
+      },
+    },
+    {
       name: "linkTarget",
       title: "Link Ziel",
       type: "string",
