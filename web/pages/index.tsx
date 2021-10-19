@@ -10,7 +10,7 @@ import { FaPhoneAlt, FaEnvelope, FaWhatsapp, FaMapPin } from "react-icons/fa";
 
 const ServicesSection = ({ serviceExcerpts }: any) => {
   return (
-    <section className="max-w-5xl mx-auto mt-20">
+    <section className="max-w-5xl mx-auto pt-20">
       <h2 className="text-4xl text-center mb-10">Angebote</h2>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {serviceExcerpts.map((excerpt: any, index: any) => (

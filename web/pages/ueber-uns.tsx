@@ -12,7 +12,7 @@ const UeberUns: NextPage = ({ data, preview }: any) => {
   return (
     <Layout>
       <NextSeo title={"Über Uns"} />
-      <m.section className="max-w-5xl mx-auto">
+      <m.section className="max-w-5xl mx-auto py-20">
         <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-20">
           <m.div className="w-full md:w-4/12">
             <Image
