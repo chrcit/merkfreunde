@@ -50,7 +50,7 @@ const Angebot: NextPage = ({ currentService, services, preview }: any) => {
                 style={{
                   color: currentService.color,
                 }}
-                className="text-5xl mb-3 font-semibold lette"
+                className="text-2xl sm:text-3xl md:text-5xl mb-3 font-semibold break-words"
               >
                 {currentService.title}
               </h1>
