@@ -1,6 +1,6 @@
 import Link from "next/link";
 import CSS from "csstype";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ServiceItem } from "../pages/angebote/[slug]";
 interface Props {
   className?: string;
@@ -12,12 +12,12 @@ const AccordionSidebar = ({ activeEntry, entries, className }: Props) => {
   return (
     <>
       <aside className={`${className}`}>
-        <motion.ul className="flex flex-col w-full">
+        <m.ul className="flex flex-col w-full">
           {entries.map((entry, index) => {
             let isActive = entry.slug === activeEntry.slug;
 
             return (
-              <motion.li
+              <m.li
                 className={`text-white transition-colors hover:opacity-100 ${
                   isActive ? "opacity-100 " : "opacity-70"
                 }`}
@@ -48,10 +48,10 @@ const AccordionSidebar = ({ activeEntry, entries, className }: Props) => {
                 <Link href={entry.slug}>
                   <a className="p-3 block">{entry.title}</a>
                 </Link>
-              </motion.li>
+              </m.li>
             );
           })}
-        </motion.ul>
+        </m.ul>
       </aside>
     </>
   );

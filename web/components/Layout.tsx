@@ -2,7 +2,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import BubblesPlayground from "./bubblesPlayground";
 import CloudShape from "./CloudShape";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 type Props = {
   children?: React.ReactNode;
@@ -21,11 +21,11 @@ const Layout: React.FC<Props> = ({ children, className }) => {
           pathClasses="fill-current text-white"
         />
 
-        <motion.main
+        <m.main
           className={`relative z-20 px-5  py-10 sm:px-15 md:px-15 lg:px-25 mx-auto bg-white bg-opacity-95 ${className}`}
         >
           {children}
-        </motion.main>
+        </m.main>
 
         <CloudShape
           svgClasses="transform relative z-20 filter drop-shadow-lg bg-opacity-95 relative bottom-1"

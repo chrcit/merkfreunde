@@ -1,12 +1,11 @@
 import type { GetStaticProps, NextPage } from "next";
-import Header from "../components/Header";
 import Layout from "../components/Layout";
 import { getClient } from "../lib/sanity.server";
 import { groq } from "next-sanity";
 import { PortableText, useSanityImage } from "../lib/sanity";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope, FaWhatsapp, FaMapPin } from "react-icons/fa";
 
 const ServicesSection = ({ serviceExcerpts }: any) => {
@@ -17,7 +16,7 @@ const ServicesSection = ({ serviceExcerpts }: any) => {
         {serviceExcerpts.map((excerpt: any, index: any) => (
           <li key={index}>
             <Link passHref href={`/angebote/${excerpt.slug}`}>
-              <motion.a
+              <m.a
                 initial={{
                   opacity: 0,
                   scale: 0.5,
@@ -36,13 +35,11 @@ const ServicesSection = ({ serviceExcerpts }: any) => {
                 className="w-full h-full justify-center text-center text-white p-5 rounded-lg flex flex-col"
                 style={{ backgroundColor: excerpt.color.hex }}
               >
-                <motion.h2 className="text-xl font-semibold ">
-                  {excerpt.title}
-                </motion.h2>
+                <m.h2 className="text-xl font-semibold ">{excerpt.title}</m.h2>
                 <div className="prose prose-sm text-white">
                   <PortableText blocks={excerpt.excerpt.text} />
                 </div>
-              </motion.a>
+              </m.a>
             </Link>
           </li>
         ))}
@@ -53,31 +50,31 @@ const ServicesSection = ({ serviceExcerpts }: any) => {
 
 const AboutSection = ({ aboutExcerpts }: any) => {
   return (
-    <motion.section className="max-w-5xl mx-auto">
+    <m.section className="max-w-5xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center space-y-10 md:space-y-0 md:space-x-20">
-        <motion.div className="w-full md:w-4/12">
+        <m.div className="w-full md:w-4/12">
           <Image
             {...useSanityImage(aboutExcerpts.image)}
             sizes="(max-width: 800px) 100vw, 800px"
             alt="placeholder"
           ></Image>
-        </motion.div>
+        </m.div>
 
-        <motion.div className="w-full md:w-8/12 space-y-3">
+        <m.div className="w-full md:w-8/12 space-y-3">
           <PortableText className="prose" blocks={aboutExcerpts.excerpt.text} />
 
           <Link href="/ueber-uns" passHref>
-            <motion.a
+            <m.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="text-xl inline-block font-semibold text-center text-white p-3 rounded-sm bg-link"
             >
               Mehr lesen
-            </motion.a>
+            </m.a>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.section>
+    </m.section>
   );
 };
 
@@ -107,7 +104,7 @@ const ContactLink = ({ index, linkData }: any) => {
 
   return (
     <div key={index}>
-      <motion.a
+      <m.a
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.05 }}
         className="flex flex-col space-y-3 text-center group"
@@ -120,7 +117,7 @@ const ContactLink = ({ index, linkData }: any) => {
           {linkData.linkText}
         </h3>
         <span className="group-hover:text-link">{linkData.linkTarget}</span>
-      </motion.a>
+      </m.a>
     </div>
   );
 };
@@ -145,14 +142,14 @@ const ContactSection = ({ contactData }: any) => {
         </div>
 
         <div className="w-full md:w-1/2">
-          <motion.iframe
+          <m.iframe
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             src={contactData.mapCode}
             className="w-full"
             height="450"
             loading="lazy"
-          ></motion.iframe>
+          ></m.iframe>
         </div>
       </div>
     </section>

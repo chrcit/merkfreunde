@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   GetStaticPaths,
   GetStaticPathsContext,
@@ -49,7 +49,7 @@ const Angebot: NextPage<Props> = ({ currentService, services, preview }) => {
                 activeEntry={currentService}
               ></AccordionSidebar>
             </div>
-            <motion.article
+            <m.article
               variants={itemVariant}
               initial="hidden"
               animate="show"
@@ -68,13 +68,13 @@ const Angebot: NextPage<Props> = ({ currentService, services, preview }) => {
                 className="prose"
                 blocks={currentService.description.text}
               ></PortableText>
-            </motion.article>
+            </m.article>
           </div>
 
           <div className="grid gap-10 grid-cols-1 md:grid-cols-2">
             {services.map((item: ServiceItem, index: number) => {
               return (
-                <motion.article
+                <m.article
                   className={`justify-center text-center text-white transition-colors shadow-lg rounded-lg ${
                     item.isActive ? "opacity-100" : "opacity-70"
                   }`}
@@ -108,7 +108,7 @@ const Angebot: NextPage<Props> = ({ currentService, services, preview }) => {
                       </div>
                     </a>
                   </Link>
-                </motion.article>
+                </m.article>
               );
             })}
           </div>
