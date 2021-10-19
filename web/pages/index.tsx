@@ -36,7 +36,7 @@ const ServicesSection = ({ serviceExcerpts }: any) => {
                 className="w-full h-full justify-center text-center text-white p-5 rounded-lg flex flex-col"
                 style={{ backgroundColor: excerpt.color.hex }}
               >
-                <motion.h2 className="text-2xl font-semibold ">
+                <motion.h2 className="text-xl font-semibold ">
                   {excerpt.title}
                 </motion.h2>
                 <div className="prose prose-sm text-white">
