@@ -1,5 +1,10 @@
 # Merkfreunde
 
+
+## Todos
+- Add Pricing to sanity + next
+- Make logo to link
+- Make navigation more distinctive
 ## Improvement Ideas
 
 Design

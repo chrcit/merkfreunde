@@ -40,9 +40,12 @@ const Page: NextPage = ({ data, preview }: any) => {
       <NextSeo title={page.title} description={page.description} />
       <Layout>
         <motion.article className="py-10 max-w-5xl mx-auto">
-          <h1 className="text-6xl mb-5">{page.title}</h1>
+          <h1 className="text-6xl mb-5 text-center">{page.title}</h1>
           <section className="flex flex-col md:flex-row md:items-start space-y-10 md:space-y-0 md:space-x-20">
-            <PortableText className="prose" blocks={page.content.text} />
+            <PortableText
+              className="prose mx-auto"
+              blocks={page.content.text}
+            />
           </section>
         </motion.article>
       </Layout>

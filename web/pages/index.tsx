@@ -15,20 +15,34 @@ const ServicesSection = ({ serviceExcerpts }: any) => {
       <h2 className="text-4xl text-center mb-10">Angebote</h2>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {serviceExcerpts.map((excerpt: any, index: any) => (
-          <li className="w-full" key={index}>
-            <Link href={`/angebote/${excerpt.slug}`}>
-              <a className="flex flex-col space-y-3">
-                <motion.h2
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="text-xl inline-block font-semibold text-center text-white p-3 rounded-sm"
-                  style={{ backgroundColor: excerpt.color.hex }}
-                >
+          <li key={index}>
+            <Link passHref href={`/angebote/${excerpt.slug}`}>
+              <motion.a
+                initial={{
+                  opacity: 0,
+                  scale: 0.5,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  opacity: 1,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                className="w-full h-full justify-center text-center text-white p-5 rounded-lg flex flex-col"
+                style={{ backgroundColor: excerpt.color.hex }}
+              >
+                <motion.h2 className="text-2xl font-semibold ">
                   {excerpt.title}
                 </motion.h2>
-
-                <PortableText blocks={excerpt.excerpt.text} />
-              </a>
+                <div className="prose prose-sm text-white">
+                  <PortableText blocks={excerpt.excerpt.text} />
+                </div>
+              </motion.a>
             </Link>
           </li>
         ))}
@@ -91,7 +105,6 @@ const ContactLink = ({ index, linkData }: any) => {
       link = "";
   }
 
-  console.log(icon);
   return (
     <div key={index}>
       <motion.a
@@ -132,12 +145,14 @@ const ContactSection = ({ contactData }: any) => {
         </div>
 
         <div className="w-full md:w-1/2">
-          <iframe
+          <motion.iframe
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             src={contactData.mapCode}
             className="w-full"
             height="450"
             loading="lazy"
-          ></iframe>
+          ></motion.iframe>
         </div>
       </div>
     </section>

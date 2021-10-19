@@ -12,18 +12,27 @@ import Layout from "../../components/Layout";
 import { itemVariant } from "../../components/motionVariants";
 import { PortableText } from "../../lib/sanity";
 import { getClient } from "../../lib/sanity.server";
+import CSS from "csstype";
+import service from "../../../studio/schemas/documents/service";
+import Link from "next/link";
 
-const Angebot: NextPage = ({ currentService, services, preview }: any) => {
-  const accordionEntries = services.map((service: any) => {
-    return {
-      title: service.title,
-      text: service.description,
-      url: `/angebote/${service.slug}`,
-      color: service.color,
-      isActive: currentService.slug === service.slug,
-    };
-  });
+export interface ServiceItem {
+  title: string;
+  description: any;
+  price: string;
+  descriptionShort: any;
+  slug: string;
+  color: CSS.Property.BackgroundColor;
+  isActive: boolean;
+}
 
+interface Props {
+  currentService: ServiceItem;
+  services: ServiceItem[];
+  preview: boolean;
+}
+
+const Angebot: NextPage<Props> = ({ currentService, services, preview }) => {
   return (
     <>
       <NextSeo
@@ -31,12 +40,13 @@ const Angebot: NextPage = ({ currentService, services, preview }: any) => {
         description={currentService.description}
       ></NextSeo>
       <Layout>
-        <section className="max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row md:space-x-5 lg:space-x-8 mx-auto">
+        <section className="max-w-5xl mx-auto space-y-20">
+          <div className="flex flex-col md:flex-row md:space-x-8 lg:space-x-12 mx-auto">
             <div className="mb-8 md:mb-0">
               <AccordionSidebar
                 className="sticky top-3"
-                entries={accordionEntries}
+                entries={services}
+                activeEntry={currentService}
               ></AccordionSidebar>
             </div>
             <motion.article
@@ -60,6 +70,48 @@ const Angebot: NextPage = ({ currentService, services, preview }: any) => {
               ></PortableText>
             </motion.article>
           </div>
+
+          <div className="grid gap-10 grid-cols-1 md:grid-cols-2">
+            {services.map((item: ServiceItem, index: number) => {
+              return (
+                <motion.article
+                  className={`justify-center text-center text-white transition-colors shadow-lg rounded-lg ${
+                    item.isActive ? "opacity-100" : "opacity-70"
+                  }`}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.5,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    opacity: 1,
+                  }}
+                  animate={{
+                    opacity: item.isActive ? 1 : 0.7,
+                    scale: item.isActive ? 1.05 : 1,
+                  }}
+                  style={{
+                    backgroundColor: item.color,
+                  }}
+                  key={index}
+                >
+                  <Link href={item.slug}>
+                    <a className="p-10 block">
+                      <h2 className="text-xl lg:text-3xl mb-3 font-semibold break-words">
+                        {item.title}
+                      </h2>
+                      <p className="font-bold">{item.price}</p>
+                      <div className="prose text-white">
+                        <PortableText
+                          blocks={item.descriptionShort.text}
+                        ></PortableText>
+                      </div>
+                    </a>
+                  </Link>
+                </motion.article>
+              );
+            })}
+          </div>
         </section>
       </Layout>
     </>
@@ -70,23 +122,27 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }: any) => {
-  const currentService = await getClient(preview).fetch(
+  const currentService: ServiceItem = await getClient(preview).fetch(
     groq`
         *[_type == "service" && slug.current == $slug][0] {
             title,
             description,
-            "slug": slug.current,
+            descriptionShort,
+            price,
+            "slug": '/angebote/' + slug.current,
             "color": color.hex
         }
     `,
     { slug: params.slug }
   );
 
-  const services: Array<object> = await getClient(preview).fetch(groq`
+  const services: Array<ServiceItem> = await getClient(preview).fetch(groq`
          *[_type == "service"] {
             title,
             description,
-            "slug": slug.current,
+            descriptionShort,
+            price,
+            "slug": '/angebote/' + slug.current,
             "color": color.hex
         }   
     `);
