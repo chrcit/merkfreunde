@@ -38,7 +38,7 @@ const Header = () => {
                 </li>
 
                 <li className="">
-                  <Link href="/angebote/hausaufgabenbetreuung">
+                  <Link href="/angebote">
                     <a>Angebot</a>
                   </Link>
                 </li>

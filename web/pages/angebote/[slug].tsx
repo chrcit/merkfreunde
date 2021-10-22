@@ -15,6 +15,7 @@ import { getClient } from "../../lib/sanity.server";
 import CSS from "csstype";
 import service from "../../../studio/schemas/documents/service";
 import Link from "next/link";
+import ServiceCard from "../../components/AngebotCard";
 
 export interface ServiceItem {
   title: string;
@@ -65,52 +66,12 @@ const Angebot: NextPage<Props> = ({ currentService, services, preview }) => {
                 {currentService.title}
               </h1>
               <PortableText
-                className="prose"
+                className="prose mb-10"
                 blocks={currentService.description.text}
               ></PortableText>
-            </m.article>
-          </div>
 
-          <div className="grid gap-10 grid-cols-1 md:grid-cols-2">
-            {services.map((item: ServiceItem, index: number) => {
-              return (
-                <m.article
-                  className={`justify-center text-center text-white transition-colors shadow-lg rounded-lg ${
-                    item.isActive ? "opacity-100" : "opacity-70"
-                  }`}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.5,
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    opacity: 1,
-                  }}
-                  animate={{
-                    opacity: item.isActive ? 1 : 0.7,
-                    scale: item.isActive ? 1.05 : 1,
-                  }}
-                  style={{
-                    backgroundColor: item.color,
-                  }}
-                  key={index}
-                >
-                  <Link href={item.slug}>
-                    <a className="p-10 block">
-                      <h2 className="text-xl lg:text-3xl mb-3 font-semibold break-words">
-                        {item.title}
-                      </h2>
-                      <p className="font-bold">{item.price}</p>
-                      <div className="prose text-white">
-                        <PortableText
-                          blocks={item.descriptionShort.text}
-                        ></PortableText>
-                      </div>
-                    </a>
-                  </Link>
-                </m.article>
-              );
-            })}
+              <ServiceCard service={currentService}></ServiceCard>
+            </m.article>
           </div>
         </section>
       </Layout>
