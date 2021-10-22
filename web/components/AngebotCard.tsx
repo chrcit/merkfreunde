@@ -11,7 +11,6 @@ type Props = {
 
 const ServiceCard = ({ service }: Props) => {
   const router = useRouter();
-  console.log(router);
 
   return (
     <m.article
@@ -24,6 +23,9 @@ const ServiceCard = ({ service }: Props) => {
       }}
       whileHover={{
         scale: router.asPath == service.slug ? 1 : 1.05,
+      }}
+      whileTap={{
+        scale: router.asPath == service.slug ? 1 : 0.95,
       }}
       animate={{
         scale: 1,
