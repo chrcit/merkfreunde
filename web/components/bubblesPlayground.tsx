@@ -26,7 +26,7 @@ const BubblesPlayground = () => {
               quantity: 1,
             },
             repulse: {
-              distance: 200,
+              distance: 150,
               duration: 0.2,
             },
           },
